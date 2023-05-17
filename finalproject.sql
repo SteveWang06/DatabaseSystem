@@ -40,17 +40,6 @@ CREATE TABLE history(
     history_content varchar(1000)
 );
 
-CREATE TABLE history(
-	history_ID varchar(10),
-    history_time datetime,
-    history_content varchar(1000)
-);
-
-CREATE TABLE history(
-	history_ID varchar(10),
-    history_time datetime,
-    history_content varchar(1000)
-);
 
 CREATE TABLE kitchen(
 	ingredient_number int(2),
