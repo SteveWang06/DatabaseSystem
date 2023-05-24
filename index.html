@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <form>
+        <p>姓名: <input type="text" required id="itemName"></p>
+        <p>電話: <input type="text" id="itemNumber"></p>
+
+    </form>
+</div>
+<div>
+    <p>漢堡套餐 <input type="text" id="hamburgerNumber" value="0"></p>
+    <button onclick="add()">+1</button>
+    <button onclick="sub()">-1</button>
+    <p>薯條 <input type="text" id="friesNumber" value="0"></p>
+    <button onclick="friesadd()">+1</button>
+    <button onclick="friessub()">-1</button>
+    <p>可樂 <input type="text" id="colaNumber" value="0"></p>
+    <button onclick="colaadd()">+1</button>
+    <button onclick="colasub()">-1</button>
+    <p>義大利麵 <input type="text" id="pastaNumber" value="0"></p>
+    <button onclick="pastaadd()">+1</button>
+    <button onclick="pastasub()">-1</button>
+</div>
+<div>
+    <p></p>
+    <button type="submit" onclick="submit()">送出</button>
+</div>
+</body>
+
+<script type="text/javascript">
+    function add(){
+        var x=document.getElementById("hamburgerNumber");
+        var a=x.value;
+        a++;
+        x.value=a;
+    }
+    function sub(){
+        var x=document.getElementById("hamburgerNumber");
+        var a=x.value;
+        a--;
+        if(a < 0){
+            a=0;
+        }
+        x.value=a;
+    }
+    function friesadd(){
+        var x=document.getElementById("friesNumber");
+        var a=x.value;
+        a++;
+        x.value=a;
+    }
+    function friessub(){
+        var x=document.getElementById("friesNumber");
+        var a=x.value;
+        a--;
+        if(a < 0){
+            a=0;
+        }
+        x.value=a;
+    }
+    function colaadd(){
+        var x=document.getElementById("colaNumber");
+        var a=x.value;
+        a++;
+        x.value=a;
+    }
+    function colasub(){
+        var x=document.getElementById("colaNumber");
+        var a=x.value;
+        a--;
+        if(a < 0){
+            a=0;
+        }
+        x.value=a;
+    }
+    function pastaadd(){
+        var x=document.getElementById("pastaNumber");
+        var a=x.value;
+        a++;
+        x.value=a;
+    }
+    function pastasub(){
+        var x=document.getElementById("pastaNumber");
+        var a=x.value;
+        a--;
+        if(a < 0){
+            a=0;
+        }
+        x.value=a;
+    }
+    function submit(){
+        window.confirm('確定要提交訂單嗎？');
+    }
+</script>
+</html>
