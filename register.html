@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>註冊會員頁面</title>
+</head>
+<body>
+<div>
+    <form>
+        <p>電子郵件信箱： <input type="text" required id="gmail" value="XXX@gmail.com"></p>
+        <p>姓名： <input type="text" required id="name" value="請務必填真名"></p>
+        <p>用戶名稱： <input type="text" required id="nickname"></p>
+        <p>生日： <input type="text" required id="birthday" value="2000-01-01"></p>
+        <p>電話： <input type="text" required id="phone" value="0987654321"></p>
+        <p>密碼： <input type="text" required id="password"></p>
+        <p>確認密碼： <input type="text" required id="confirmPassword"></p>
+    </form>
+    <button type="submit" onclick="submit()">送出</button>
+</div>
+
+<script>
+    function submit(){
+        window.alert('資料已送出！');
+    }
+</script>
+</body>
+</html>
