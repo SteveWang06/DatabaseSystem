@@ -1,12 +1,12 @@
 CREATE DATABASE restaurant;
 SHOW DATABASES;
 
-DROP TABLE orderpaper;
+DROP TABLE schedule;
 
 CREATE TABLE customer(
 	customer_name varchar(30) not null,
-    customer_phone varchar(10) not null,
-    PRIMARY KEY (customer_name)
+    customer_phone varchar(10) not null unique,
+    PRIMARY KEY (customer_name,customer_phone)
 );
 
 CREATE TABLE member(
@@ -20,10 +20,17 @@ CREATE TABLE member(
     member_nickname varchar(30),
     member_account varchar(30) not null,
     PRIMARY KEY (member_ID)
-    #,
-    #FOREIGN KEY (member_phone) REFERENCES customer(customer_phone),
-    #FOREIGN KEY (member_name) REFERENCES customer(customer_name)
 );
+
+ALTER TABLE member
+ADD FOREIGN KEY (member_phone)
+REFERENCES customer(customer_phone)
+ON DELETE NO ACTION;
+
+ALTER TABLE member
+ADD FOREIGN KEY (member_name)
+REFERENCES customer(customer_name)
+ON DELETE NO ACTION;
 
 CREATE TABLE employee(
 	employee_name varchar(30) not null,
@@ -40,6 +47,11 @@ CREATE TABLE history(
     PRIMARY KEY (history_ID)
 );
 
+ALTER TABLE history
+ADD FOREIGN KEY (history_ID)
+REFERENCES orderpaper(order_ID)
+ON DELETE NO ACTION;
+
 CREATE TABLE kitchen(
 	ingredient_name varchar(30) not null,
 	ingredient_number int(2) default 0,
@@ -48,12 +60,23 @@ CREATE TABLE kitchen(
 );
 
 CREATE TABLE schedule(
-	employee_name int(30) not null,
+	employee_name varchar(30) not null,
     employee_number varchar(5) not null,
     workstart time not null,
     workfinish time not null,
     PRIMARY KEY (employee_name)
 );
+
+ALTER TABLE schedule
+ADD FOREIGN KEY (employee_number)
+REFERENCES employee(employee_number)
+ON DELETE NO ACTION; 
+
+ALTER TABLE schedule
+ADD FOREIGN KEY (employee_name)
+REFERENCES employee(employee_name)
+ON DELETE NO ACTION; 
+
 
 CREATE TABLE seat(
 	seat_number int AUTO_INCREMENT,
@@ -80,12 +103,23 @@ CREATE TABLE pay(
     PRIMARY KEY (pay_ID)
 );
 
+ALTER TABLE pay
+ADD FOREIGN KEY (pay_ID)
+REFERENCES orderpaper(order_ID)
+ON DELETE NO ACTION;
+
 CREATE TABLE orderpaper(
 	order_ID int AUTO_INCREMENT,
     order_time datetime not null,
     order_content varchar(1000) not null,
+    seat_number int not null,
     PRIMARY KEY (order_ID)
 );
+
+ALTER TABLE orderpaper
+ADD FOREIGN KEY (seat_number)
+REFERENCES seat(seat_number)
+ON DELETE NO ACTION;
 
 SHOW TABLES;
 SHOW COLUMNS FROM customer;
