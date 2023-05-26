@@ -68,6 +68,10 @@ ADD FOREIGN KEY (history_ID)
 REFERENCES orderpaper(order_ID)
 ON DELETE NO ACTION;
 
+insert into `history` values(1,'2023-05-20 17:20:00','美式早餐:1, 咖啡:2');
+insert into `history` values(2,'2023-05-20 17:50:00','韓式炸雞:1, 泡菜:1, 飯:1');
+insert into `history` values(3,'2023-05-19 18:30:00','日式拉麵:2, 炸豬排:1');
+
 CREATE TABLE kitchen(
 	ingredient_name varchar(30) not null,
 	ingredient_number int default 0,
@@ -122,8 +126,10 @@ CREATE TABLE store(
 );
 
 insert into `store` values(1,'台北市中山區明水路581巷15號1樓','09:00:00','21:00:00');
-insert into `store` values(2,'新北市板橋區文化路二段227號、229號1樓','10:00:00','20:00:00');
+insert into `store` values(2,'新北市板橋區文化路二段229號1樓','10:00:00','20:00:00');
 insert into `store` values(3,'台中市西屯區中平路279號','11:00:00','22:00:00');
+
+#UPDATE store SET store_living='新北市板橋區文化路二段229號1樓' where store_number=2;
 
 CREATE TABLE pay(
 	pay_ID int AUTO_INCREMENT,
@@ -140,6 +146,10 @@ ADD FOREIGN KEY (pay_ID)
 REFERENCES orderpaper(order_ID)
 ON DELETE NO ACTION;
 
+insert into `pay` values(1,'現金','-10%',1,500);
+insert into `pay` values(2,'信用卡','-20%',1,800);
+insert into `pay` values(3,'現金',null,0,350);
+
 CREATE TABLE orderpaper(
 	order_ID int AUTO_INCREMENT,
     order_time datetime not null,
@@ -153,8 +163,12 @@ ADD FOREIGN KEY (seat_number)
 REFERENCES seat(seat_number)
 ON DELETE NO ACTION;
 
+insert into `orderpaper` values(1,'2023-05-20 17:20:00','美式早餐:1, 咖啡:2',1);
+insert into `orderpaper` values(2,'2023-05-20 17:50:00','韓式炸雞:1, 泡菜:1, 飯:1',2);
+insert into `orderpaper` values(3,'2023-05-19 18:30:00','日式拉麵:2, 炸豬排:1',3);
+
 SHOW TABLES;
 SHOW COLUMNS FROM customer;
 
 select *
-from schedule
+from store
